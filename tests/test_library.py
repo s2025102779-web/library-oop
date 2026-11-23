@@ -117,5 +117,15 @@ class TestLibrary(unittest.TestCase):
         with self.assertRaises(LibraryError):
             self.library.add_item(duplicate_book)
 
+    def test_can_renew_on_due_date(self):
+        loan = self.library.borrow("B001", self.today)
+
+        self.library.renew("B001", loan.due_date)
+
+        self.assertEqual(
+            loan.due_date,
+            self.today + timedelta(days=28)
+        )
+
 if __name__ == "__main__":
     unittest.main()
