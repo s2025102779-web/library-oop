@@ -111,6 +111,11 @@ class TestLibrary(unittest.TestCase):
         with self.assertRaises(ValueError):
             Thesis("T002", "Research Paper", "")
 
+    def test_duplicate_item_id(self):
+        duplicate_book = Book("B001", "Another Python Book")
+
+        with self.assertRaises(LibraryError):
+            self.library.add_item(duplicate_book)
 
 if __name__ == "__main__":
     unittest.main()
