@@ -127,5 +127,13 @@ class TestLibrary(unittest.TestCase):
             self.today + timedelta(days=28)
         )
 
+    def test_not_overdue_before_due_date(self):
+        self.library.borrow("B001", self.today)
+
+        overdue = self.library.overdue_report(self.today)
+
+        self.assertEqual(len(overdue), 0)   
+
 if __name__ == "__main__":
+    
     unittest.main()
