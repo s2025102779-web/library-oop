@@ -99,5 +99,18 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(len(overdue), 1)
 
 
+    def test_empty_book_id_is_not_allowed(self):
+        with self.assertRaises(ValueError):
+            Book("", "Python Programming")
+
+    def test_empty_book_title_is_not_allowed(self):
+        with self.assertRaises(ValueError):
+            Book("B002", "   ")
+
+    def test_empty_thesis_adviser_is_not_allowed(self):
+        with self.assertRaises(ValueError):
+            Thesis("T002", "Research Paper", "")
+
+
 if __name__ == "__main__":
     unittest.main()
